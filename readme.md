@@ -21,7 +21,7 @@ response = urllib.request.open('https://www.baidu.com')
 print(type(response))
 ```
 得到response是一个HTTPResponse类型的对象，包含read(), getheader('name'), getheaders(), readinto(), fileno()等方法，以及msg, version, status, reason, debuglevel, closed等属性。\
-若要传递data参数，要将其转码为*byte()*类型
+若要传递data参数，要将其转码为 *byte* 类型
 ```
 import urllib.parse
 data = bytes(urllib.parse.urlencode({'key':'value}'), encode='utf8')
