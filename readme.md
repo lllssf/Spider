@@ -14,10 +14,15 @@
 ## 基础操作
 ### 1. urllib库
 ### 1.1 urllib.request模拟发送请求
-1. urllib.request.urlopen('URL', data=None, [timeout,]*, cafile=None, capath=None, cadefault=False, context=None)
+ urllib.request.urlopen('URL', data=None, [timeout,]*, cafile=None, capath=None, cadefault=False, context=None)
 ```
 import urllib.request
 response = urllib.request.open('https://www.baidu.com')
 print(type(response))
 ```
-得到response是一个HTTPResponse类型的对象，包含read(), getheader('name'), getheaders(), readinto(), fileno()等方法，以及msg, version, status, reason, debuglevel, closed等属性。
+得到response是一个HTTPResponse类型的对象，包含read(), getheader('name'), getheaders(), readinto(), fileno()等方法，以及msg, version, status, reason, debuglevel, closed等属性。\
+若要传递data参数，要将其转码为*byte()*类型
+```
+import urllib.parse
+data = bytes(urllib.parse.urlencode({'key':'value}'), encode='utf8')
+```
