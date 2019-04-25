@@ -17,7 +17,7 @@
  urllib.request.urlopen('URL', data=None, [timeout,]*, cafile=None, capath=None, cadefault=False, context=None)
 ```
 import urllib.request
-response = urllib.request.open('https://www.baidu.com')
+response = urllib.request.urlopen('https://www.baidu.com')
 print(type(response))
 ```
 得到response是一个HTTPResponse类型的对象，包含read(), getheader('name'), getheaders(), readinto(), fileno()等方法，以及msg, version, status, reason, debuglevel, closed等属性。\
@@ -25,4 +25,16 @@ print(type(response))
 ```
 import urllib.parse
 data = bytes(urllib.parse.urlencode({'key':'value}'), encode='utf8')
+```
+通过 *timeout* 可以设置对响应时间过长的网页跳过抓取：
+```
+import socket
+import urllib.request
+import urllib.error
+
+try:
+    response = urllib.request.urlopen('URL', timeout=10)
+except urllib.error.URLError as e:
+    if isinstance(e.reason, socket.timeout):
+        print('Time Out!')
 ```
