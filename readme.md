@@ -38,3 +38,4 @@ except urllib.error.URLError as e:
     if isinstance(e.reason, socket.timeout):
         print('Time Out!')
 ```
+pass
